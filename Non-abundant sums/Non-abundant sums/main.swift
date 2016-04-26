@@ -47,57 +47,63 @@ extension Int {
 }
 
 var arrayOfAbundance: [Int] = 28123.abundantNumbers
-print(arrayOfAbundance)
+// print(arrayOfAbundance)
 
-func sumOfAbundantNumbers(arrayOfAbundance: [Int]) -> [Int] {
-    var sum: [Int] = []
+func sumOfAbundantNumbers(arrayOfAbundance: [Int]) -> [Bool] {
+    var sum = [Bool](count: arrayOfAbundance.count, repeatedValue: false)
     for i in 0..<arrayOfAbundance.count {
         for j in i..<arrayOfAbundance.count {
-            sum.append(arrayOfAbundance[i] + arrayOfAbundance[j])
-            if sum.last > 28123 {
+//            sum.append(arrayOfAbundance[i] + arrayOfAbundance[j])
+            if arrayOfAbundance[i] + arrayOfAbundance[j] > 28123 {
                 break
             }
+//            sum.append(arrayOfAbundance[i] + arrayOfAbundance[j])
+            sum[arrayOfAbundance[i] + arrayOfAbundance[j]] = true
         }
     }
     return sum
 }
+
+
 
 //sumOfAbundantNumbers(arrayOfAbundance)
-var sumPairsAbundance: [Int] = sumOfAbundantNumbers(arrayOfAbundance)
-print(sumOfAbundantNumbers(arrayOfAbundance))
+//var sumPairsAbundance: [Int] = sumOfAbundantNumbers(arrayOfAbundance)
+//print(sumOfAbundantNumbers(arrayOfAbundance))
 
-func dictionaryOfSums() -> [Int: Bool] {
-    var dict: [Int: Bool] = [:]
-    for i in 0...28123 {
-        for j in 0..<sumPairsAbundance.count {
-            if i == sumPairsAbundance[j] {
-                dict[i] = true
-                break
-            }
-            else
-            {
-                dict[i] = false
-            }
-        }
-    }
-    return dict
-}
+//func dictionaryOfSums() -> [Int: Bool] {
+//    var dict: [Int: Bool] = [:]
+//    for i in 0...28123 {
+//        for j in 0..<sumPairsAbundance.count {
+//            if i == sumPairsAbundance[j] {
+//                dict[i] = true
+//                break
+//            }
+//            else
+//            {
+//                dict[i] = false
+//            }
+//        }
+//    }
+//    return dict
+//}
 
-var numsToAdd = dictionaryOfSums()
+//var numsToAdd = dictionaryOfSums()
+var numsToAdd = sumOfAbundantNumbers(arrayOfAbundance)
+print(numsToAdd)
 
-func sumNum(numsToAdd: [Int: Bool]) -> Int {
-    var sum: Int = 0
-    for num in numsToAdd.keys {
-        if numsToAdd[num] != true {
-            sum += num
-            print(num)
-        }
-    }
-    return sum
-}
-
-let s = sumNum(numsToAdd)
-print(s)
+//func sumNum(numsToAdd: [Int: Bool]) -> Int {
+//    var sum: Int = 0
+//    for num in numsToAdd.keys {
+//        if numsToAdd[num] != true {
+//            sum += num
+//            print(num)
+//        }
+//    }
+//    return sum
+//}
+//
+//let s = sumNum(numsToAdd)
+//print(s)
 
 //var notRepresentative = sumNum(numsToAdd)
 //var answer = notRepresentative.reduce(0, combine: +)
